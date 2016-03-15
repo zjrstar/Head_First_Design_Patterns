@@ -1,10 +1,12 @@
-package headfirst.designpatterns.state.gumballstate;
+package headfirst.designpatterns.state.gumballstatewinner;
+
+import java.util.Random;
 
 /**
  * Created by Jerry on 3/14/16.
  */
 public class HasQuarterState implements State {
-
+    Random randomWinner = new Random(System.currentTimeMillis());
     GumballMachine gumballMachine;
 
     public HasQuarterState(GumballMachine gumballMachine) {
@@ -24,8 +26,13 @@ public class HasQuarterState implements State {
 
     @Override
     public void turnCrank() {
-        System.out.println("You turned...");
-        gumballMachine.setState(gumballMachine.getSoldState());
+        int winner = randomWinner.nextInt(10);
+        System.out.println("You turned..." + winner);
+        if (winner == 7 && gumballMachine.getCount() > 1) {
+            gumballMachine.setState(gumballMachine.getWinnerState());
+        } else {
+            gumballMachine.setState(gumballMachine.getSoldState());
+        }
     }
 
     @Override

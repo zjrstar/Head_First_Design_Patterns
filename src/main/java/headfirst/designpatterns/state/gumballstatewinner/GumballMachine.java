@@ -1,4 +1,4 @@
-package headfirst.designpatterns.state.gumballstate;
+package headfirst.designpatterns.state.gumballstatewinner;
 
 /**
  * Created by Jerry on 3/14/16.
@@ -9,24 +9,10 @@ public class GumballMachine {
     State noQuarterState;
     State hasQuarterState;
     State soldState;
-
-    public State getSoldOutState() {
-        return soldOutState;
-    }
-
-    public State getNoQuarterState() {
-        return noQuarterState;
-    }
-
-    public State getHasQuarterState() {
-        return hasQuarterState;
-    }
-
-    public State getSoldState() {
-        return soldState;
-    }
+    State winnerState;
 
     State state = soldOutState;
+
     int count = 0;
 
     public GumballMachine(int numberGumballs) {
@@ -34,6 +20,7 @@ public class GumballMachine {
         noQuarterState = new NoQuarterState(this);
         hasQuarterState = new HasQuarterState(this);
         soldState = new SoldState(this);
+        winnerState = new WinnerState(this);
         this.count = numberGumballs;
         if (numberGumballs > 0) {
             state = noQuarterState;
@@ -63,4 +50,29 @@ public class GumballMachine {
             count = count - 1;
         }
     }
+
+    public State getWinnerState() {
+        return winnerState;
+    }
+
+    public State getSoldOutState() {
+        return soldOutState;
+    }
+
+    public State getNoQuarterState() {
+        return noQuarterState;
+    }
+
+    public State getHasQuarterState() {
+        return hasQuarterState;
+    }
+
+    public State getSoldState() {
+        return soldState;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
 }

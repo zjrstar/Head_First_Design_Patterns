@@ -1,4 +1,4 @@
-package headfirst.designpatterns.state.gumballstate;
+package headfirst.designpatterns.state.gumballstatewinner;
 
 /**
  * Created by Jerry on 3/14/16.
